@@ -1,0 +1,48 @@
+{
+  "uz": "O'zbekcha",
+  "en": "Inglizcha",
+  "ru": "Ruscha",
+  "headerText": {
+    "1": "Our travel agents are",
+    "2": "with the best",
+    "3": "service we have."
+  },
+  "menu": {
+    "home": "Bosh sahifa",
+    "trips": "Sayohatlar",
+    "gallery": "Gallereya",
+    "blog": "Blog"
+  },
+  "headerDesc": "The best places in the budget. Premier Travel Going The Distance For You. The best vacation is the one you will never forget.",
+  "getStarted": "Boshlash",
+  "playVideo": "Video",
+  "trips": {
+    "label": "Sayohat rejalari",
+    "description": "The best places in the budget. Premier Travel Going The Distance For You. "
+  },
+  "gallery": {
+    "label": "Biz haqimizda",
+    "description": "All the travel company that we are going to share with you are cool creative and unique."
+  },
+  "subsribeOurNewsLetter": "Subscribe to our newsletter",
+  "typeAnEmail": "Email kiriting",
+  "subscribe": "A'zo bo'ling",
+  "services": "Xizmatlar",
+  "popularPlaces": "Mashhur joylar",
+  "pricing": "Narxlar",
+  "booking": "Yozilish",
+  "termsOfServices": "Kelishuv shartlari",
+  "faq": "FAQ",
+  "helpAndSupport": "Yordam",
+  "blog": "Blog",
+  "news": "Yangiliklar",
+  "point": "ball",
+  "viewDetails": "Band qilish",
+  "amount": "Narxi",
+  "quantity": "Soni",
+  "total": "Jami",
+  "payViaClick": "Click bilan to'lang",
+  "contacts": "Aloqa",
+  "support": "Yordam",
+  "ourLocation": "Manzilimiz"
+}

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include=".netlify\state.json" />
+      <Content Include=".vscode\extensions.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include=".netlify\functions-internal\" />
+      <Folder Include=".netlify\v1\functions\" />
+    </ItemGroup>
+
+</Project>

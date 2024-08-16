@@ -1,0 +1,48 @@
+{
+  "uz": "Uzbek",
+  "en": "English",
+  "ru": "Russian",
+  "headerText": {
+    "1": "Our travel agents are",
+    "2": "with the best",
+    "3": "service we have."
+  },
+  "menu": {
+    "home": "Homepage",
+    "trips": "Trips",
+    "gallery": "Gallery",
+    "blog": "Blog"
+  },
+  "headerDesc": "The best places in the budget. ",
+  "getStarted": "Start",
+  "playVideo": "Video",
+  "trips": {
+    "label": "Travel plans",
+    "description": "The best places in the budget.  "
+  },
+  "gallery": {
+    "label": "About us",
+    "description": "All the travel companies that we are going to share with you are cool creative and unique."
+  },
+  "subsribeOurNewsLetter": "Subscribe to our newsletter",
+  "typeAnEmail": "Enter email",
+  "subscribe": "Become a member",
+  "services": "Services",
+  "popularPlaces": "Popular places",
+  "pricing": "Prices",
+  "booking": "Writing",
+  "termsOfServices": "Terms of Agreement",
+  "faq": "FAQ",
+  "helpAndSupport": "Help",
+  "blog": "Blog",
+  "news": "News",
+  "point": "score",
+  "viewDetails": "Booking",
+  "amount": "Cost",
+  "quantity": "Number",
+  "total": "Total",
+  "payViaClick": "Pay with a click",
+  "contacts": "Communication",
+  "support": "Help",
+  "ourLocation": "Our address"
+}
