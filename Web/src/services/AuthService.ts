@@ -28,6 +28,10 @@ export class AuthService extends BaseApiService {
         return (await this.SendAsync("auth/me", "GET", null, null));
     }
 
+    async GetAllUsers() {
+        return (await this.SendAsync("auth/users", "GET", null, null));
+    }
+
 }
 
 export const authService = new AuthService();

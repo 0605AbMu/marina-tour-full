@@ -1,6 +1,7 @@
 <script setup>
 import SwiperCard from '../components/ui/SwiperCard.vue'
 import GalleryList from '../components/ui/GalleryList.vue'
+import EmailInput from "@/components/layouts/EmailInput.vue";
 </script>
 <template>
   <div class="bg-white py-4">
@@ -66,5 +67,11 @@ import GalleryList from '../components/ui/GalleryList.vue'
           referrerpolicy="no-referrer-when-downgrade"
       ></iframe>
     </div>
+  </div>
+  <div
+      class="w-full bg-[#FF4D64] flex flex-row justify-center items-center bg-opacity-[10%] gap-x-56 h-[250px]"
+  >
+    <p class="text-4xl font-semibold">{{ $t('subsribeOurNewsLetter') }}</p>
+    <EmailInput/>
   </div>
 </template>

@@ -1,11 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div
-    class="w-full bg-[#FF4D64] flex flex-row justify-center items-center bg-opacity-[10%] gap-x-56 h-[250px]"
-  >
-    <p class="text-4xl font-semibold">{{ $t('subsribeOurNewsLetter') }}</p>
-    <EmailInput />
-  </div>
   <div class="w-full p-10 bg-[#1A080A] flex flex-col justify-center items-center gap-y-5" id="blog">
     <div class="flex flex-row w-full gap-y-10 m-10 mb-2 justify-center flex-wrap gap-x-56">
       <div>

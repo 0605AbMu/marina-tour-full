@@ -1,6 +1,11 @@
 import {defineStore} from 'pinia'
-import {ref} from 'vue'
+import {ref, computed} from 'vue'
 import authService from "@/services/AuthService.ts";
+
+export const Roles = {
+    Admin: "ADMIN",
+    Client: "CLIENT",
+}
 
 export const useAuthStore = defineStore('auth-store', () => {
 
@@ -10,7 +15,6 @@ export const useAuthStore = defineStore('auth-store', () => {
     const LoadMe = async () => {
         try {
             const res = await authService.GetMe();
-            console.log(res);
             me.value = res.content;
             userSignedIn.value = true;
         } catch (e) {
@@ -19,9 +23,11 @@ export const useAuthStore = defineStore('auth-store', () => {
         }
     }
 
+    const GetRole = computed(() => me && me.value ? me.value.role : null);
+
 
     return {
-        me, userSignedIn, LoadMe
+        me, userSignedIn, LoadMe, GetRole
     }
 })
 

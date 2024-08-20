@@ -9,7 +9,7 @@ public class CreateTripDto
 
      public MultiLanguageField Name { get; set; } = default!;
 
-     public MultiLanguageField Location { get; set; } = default!;
+     public MultiLanguageField Country { get; set; } = default!;
 
      [Range(0.001, Int32.MaxValue)]
      public decimal Price { get; set; }

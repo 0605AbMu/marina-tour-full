@@ -26,6 +26,9 @@
         <Content Include="..\.dockerignore">
             <Link>.dockerignore</Link>
         </Content>
+        <Content Update="wwwroot/**">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
     <Target Name="FrontEndBuild" AfterTargets="Restore" BeforeTargets="BeforeBuild">
