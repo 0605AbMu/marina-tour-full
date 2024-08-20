@@ -4,11 +4,12 @@ import {reactive, ref} from "vue";
 import authService from "@/services/AuthService.ts";
 import {vMaska} from "maska/vue";
 
-const signModel = reactive({
+const signInModelInit = {
   phoneNumber: "",
   otp: "",
   key: null
-})
+};
+const signModel = reactive(signInModelInit);
 
 const otpSent = ref(false);
 

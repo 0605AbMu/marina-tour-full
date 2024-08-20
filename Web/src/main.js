@@ -17,7 +17,7 @@ import i18n from './plugins/i18n'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import MultiLanguage from "@/plugins/MultiLanguage.js";
+import MultiLanguage from "@/plugins/formatters.js";
 
 
 const app = createApp(App)

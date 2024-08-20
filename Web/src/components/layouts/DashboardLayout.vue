@@ -1,5 +1,7 @@
 <script setup>
 import {useRoute} from "vue-router";
+import {Roles} from "@/stores/authStore.js";
+import Authorize from "@/components/ui/Authorize.vue";
 
 const route = useRoute();
 
@@ -12,10 +14,16 @@ const route = useRoute();
         class="w-[70%] flex flex-row gap-x-4 bg-white p-10 px-5 m-10 rounded-xl border-gray-400  border-[.5px] border-opacity-35">
       <div class="h-full w-[20%]">
         <el-menu router unique-opened :default-active="route.path" ellipsis>
-          <el-menu-item index="/dashboard">Profil</el-menu-item>
-          <el-menu-item index="/dashboard/users">Foydalanuvchilar</el-menu-item>
-          <el-menu-item index="/dashboard/trip-management">Sayohatlar boshqaruvi</el-menu-item>
-          <el-menu-item index="/dashboard/my-orders">Mening buyurtmalarim</el-menu-item>
+          <authorize :role="[Roles.Client, Roles.Admin]">
+            <el-menu-item index="/dashboard">Profil</el-menu-item>
+          </authorize>
+          <authorize :role="[Roles.Client, Roles.Admin]">
+            <el-menu-item index="/dashboard/my-orders">Mening buyurtmalarim</el-menu-item>
+          </authorize>
+          <authorize :role="Roles.Admin">
+            <el-menu-item index="/dashboard/users">Foydalanuvchilar</el-menu-item>
+            <el-menu-item index="/dashboard/trip-management">Sayohatlar boshqaruvi</el-menu-item>
+          </authorize>
         </el-menu>
       </div>
       <div class="w-[80%] flex flex-col">

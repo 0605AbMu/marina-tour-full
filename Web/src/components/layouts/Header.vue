@@ -3,14 +3,19 @@
 import {onMounted, ref, computed} from 'vue'
 import i18n from '@/plugins/i18n'
 import SelectLang from "../ui/SelectLang.vue"
-import useAuthStore from '@/stores/authStore.js'
+import useAuthStore, {Roles} from '@/stores/authStore.js'
 import SignInModal from "@/components/ui/SignInModal.vue";
 import authService from "@/services/AuthService.ts";
 import Get from "lodash-es/get.js";
+import {useRoute} from "vue-router";
+import {CloseBold, RemoveFilled} from "@element-plus/icons-vue";
+import Authorize from "@/components/ui/Authorize.vue";
 
 const t = i18n.global.t
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
+const route = useRoute();
+
 
 const data = [
   {name: t('menu.home'), url: '/#home'},
@@ -39,6 +44,9 @@ const GetLabel = computed(() => {
 })
 
 onMounted(() => {
+  if (!authStore.userSignedIn && route.hash.indexOf("#login") !== -1)
+    signModalOpen.value = true;
+
 })
 </script>
 <template>
@@ -62,10 +70,51 @@ onMounted(() => {
                 class="py-1 px-6 rounded bg-[#FF4D64] text-white">{{ $t('login') }}
         </button>
         <template v-else>
-          <el-button round icon="SwitchButton" size="large" class="!bg-red-500 !text-white"
-                     @click="signOutBtnClickHandle">
-            <template v-if="GetLabel">{{ GetLabel }}</template>
-          </el-button>
+          <el-dropdown>
+            <el-button size="large" class="!rounded-xl !bg-[#FF4D64] !text-white">
+              {{ GetLabel }}
+              <el-icon class="el-icon--right">
+                <arrow-down/>
+              </el-icon>
+            </el-button>
+            <template #dropdown>
+              <el-dropdown-menu>
+
+                <authorize :role="[Roles.Client, Roles.Admin]">
+                  <router-link to="/dashboard">
+                    <el-dropdown-item>
+                      Profil
+                    </el-dropdown-item>
+                  </router-link>
+                </authorize>
+
+                <authorize :role="[Roles.Client, Roles.Admin]">
+                  <router-link to="/dashboard/my-orders">
+                    <el-dropdown-item>Mening buyurtmalarim</el-dropdown-item>
+                  </router-link>
+                </authorize>
+
+                <authorize :role="Roles.Admin">
+                  <router-link to="/dashboard/users">
+                    <el-dropdown-item>Foydalanuvchilar</el-dropdown-item>
+                  </router-link>
+                </authorize>
+
+                <authorize :role="Roles.Admin">
+                  <router-link to="/dashboard/trip-management">
+                    <el-dropdown-item>Sayohatlar boshqaruvi</el-dropdown-item>
+                  </router-link>
+                </authorize>
+
+                <el-dropdown-item @click="signOutBtnClickHandle" divided>
+                  <el-icon color="rgb(185 28 28)">
+                    <RemoveFilled/>
+                  </el-icon>
+                  <span class="text-red-700 font-bold">Sign Out</span>
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </template>
         <sign-in-modal v-model="signModalOpen"/>
       </div>

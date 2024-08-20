@@ -8,9 +8,6 @@ const router = useRouter();
 const authStore = useAuthStore();
 
 onBeforeMount(async () => {
-  console.log(authStore);
-  console.log(router.currentRoute.value);
-  return;
   if (!authStore.userSignedIn) {
     await router.push({path: "/", replace: true, force: true});
     notificationHelper.Error("Access denied!")

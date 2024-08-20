@@ -15,6 +15,9 @@ public class Trip
      [Column("country", TypeName = "jsonb")]
      public MultiLanguageField Country { get; set; } = default!;
 
+     [Column("description", TypeName = "jsonb")]
+     public MultiLanguageField? Description { get; set; } = default!;
+
      [Range(0, 5)]
      public float Rank { get; set; }
 

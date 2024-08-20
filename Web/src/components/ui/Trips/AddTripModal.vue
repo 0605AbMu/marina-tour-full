@@ -21,6 +21,11 @@ const tripModel = reactive({
     ru: '',
     en: ''
   },
+  description: {
+    uz: '',
+    ru: '',
+    en: ''
+  },
   price: null,
   discount: null,
   images: ''
@@ -55,6 +60,18 @@ const handleSave = async () => {
           <el-input v-model="tripModel.country.uz" placeholder="country uz" size="large"></el-input>
           <el-input v-model="tripModel.country.en" placeholder="country en" size="large"></el-input>
           <el-input v-model="tripModel.country.ru" placeholder="country ru" size="large"></el-input>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2">
+        <p class="text-lg font-medium">Description</p>
+        <div class="!flex !flex-row items-center gap-x-4">
+          <el-input v-model="tripModel.description.uz" placeholder="description uz" type="textarea" rows="4"
+                    size="large"></el-input>
+          <el-input v-model="tripModel.description.en" placeholder="description en" type="textarea" rows="4"
+                    size="large"></el-input>
+          <el-input v-model="tripModel.description.ru" placeholder="description ru" type="textarea" rows="4"
+                    size="large"></el-input>
         </div>
       </div>
 

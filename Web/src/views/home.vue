@@ -43,11 +43,13 @@ import EmailInput from "@/components/layouts/EmailInput.vue";
         </div>
       </div>
     </div>
-    <div class="container mx-auto mt-20" data-aos="fade-up">
-      <h3 class="text-4xl">{{ $t('trips.label') }}</h3>
-      <p class="text-xl text-[#4D4949] mt-3">
-        {{ $t('trips.description') }}
-      </p>
+    <div class="container mx-auto mt-20 flex flex-col gap-y-10" data-aos="fade-up" id="trips">
+      <div>
+        <h3 class="text-4xl">{{ $t('trips.label') }}</h3>
+        <p class="text-xl text-[#4D4949] mt-3">
+          {{ $t('trips.description') }}
+        </p>
+      </div>
       <SwiperCard class="mt-8"/>
     </div>
     <!-- Gallery -->

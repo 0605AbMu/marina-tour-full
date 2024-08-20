@@ -41,11 +41,12 @@ const fileList = computed(() => {
   if (!model.value || model.value.length === 0)
     return [];
 
+  const fileApiBaseUrl = axiosInstance.defaults.baseURL.replace("api", "uploads/");
   if (model.value.indexOf(";") !== -1) {
-    const files = model.value.split(";").filter(x => x.length > 0).map(x => ({url: axiosInstance.defaults.baseURL.replace("api", "uploads/") + x}));
+    const files = model.value.split(";").filter(x => x.length > 0).map(x => ({url:  fileApiBaseUrl+ x}));
     return files as UploadUserFile[];
   } else return [{
-    url: (axiosInstance.defaults.baseURL.replace("api", "uploads/") + model.value),
+    url: (fileApiBaseUrl + model.value),
     name: "image"
   }];
 })

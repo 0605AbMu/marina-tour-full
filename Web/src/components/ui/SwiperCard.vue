@@ -1,85 +1,92 @@
 <script setup>
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Pagination, Navigation, Autoplay } from 'swiper/modules'
+import {Autoplay, Navigation, Pagination} from 'swiper/modules'
 import useTripStore from '../../stores/tripStore'
+import {onMounted, ref} from "vue";
+import div from "element-plus/es/components/divider/src/divider2";
+import {FileApiBaseUrl} from "@/plugins/Axios.js";
+import BookingModal from "@/components/ui/BookingModal.vue";
+import useAuthStore from "@/stores/authStore.js";
+import {useRouter} from "vue-router";
+
 const tripStore = useTripStore()
 
-const modules = [Pagination, Navigation, Autoplay]
+const modules = [Pagination, Navigation, Autoplay];
+const authStore = useAuthStore();
 
-const data = tripStore.trips
+const data = ref([]);
 
-function urlImage(url) {
-  return new URL(url, import.meta.url).href
+onMounted(async () => {
+  data.value = (await tripStore.GetTrips()).value;
+})
+
+const bookDialogOpen = ref(false);
+const selectedTrip = ref({});
+
+
+const router = useRouter();
+
+const bookATrip = (trip) => {
+  if (authStore.userSignedIn) {
+    selectedTrip.value = trip;
+    bookDialogOpen.value = true;
+  } else {
+    window.location.hash = "#login";
+    window.location.reload();
+  }
 }
+
 </script>
 <template>
-  <div class="select-none scroll-smooth" id="trips">
-    <swiper
-      :slidesPerView="3"
-      :spaceBetween="30"
-      :loop="true"
-      :pagination="{
-        clickable: true
-      }"
-      :autoplay="{
-        delay: 1500,
-        disableOnInteraction: true
-      }"
-      :navigation="true"
-      :modules="modules"
-      class="mySwiper"
-    >
-      <swiper-slide
-        class="border-2 rounded-xl transition-all duration-500 ease-in-out group hover:border-[#FF4D64] !h-[500px]"
-        v-for="item in data"
-        :key="item.url"
+  <div class="select-none scroll-smooth">
+    <div class="flex flex-wrap flex-row justify-center gap-x-5 gap-y-5 ">
+      <div
+          v-if="data && data.length > 0"
+          class="border-2 rounded-xl transition-all duration-500 ease-in-out group hover:border-[#FF4D64] !h-[500px] !w-[400px] !flex flex-col justify-between shadow-lg overflow-hidden"
+          v-for="item in data"
+          :key="item.id"
       >
-        <div class="overflow-hidden relative rounded-t-xl cursor-pointer">
-          <img
-            :src="urlImage(item.img)"
-            alt="not image"
-            class="w-full object-cover transition duration-500 ease-in-out scale-110 group-hover:scale-125"
-          />
-          <div
-            class="absolute top-0 right-0 left-0 h-full w-full bg-[#00000012] flex justify-end items-end p-4"
-          >
-            <span class="text-white border px-2 py-1 rounded">{{
-              tripStore.formatPrice(item.price)
-            }}</span>
-          </div>
-        </div>
-        <div class="flex flex-col gap-4 px-4 py-8">
-          <h3 class="text-[#1A080A] text-2xl font-semibold">{{ item.title }}</h3>
-          <div class="flex items-center gap-4 text-[#4D4949]">
-            <i class="bi bi-geo-alt-fill text-red-800 text-2xl"></i>
-            <p class="text-xl">{{ item.region }}</p>
-          </div>
-          <div class="flex justify-between">
-            <div class="flex gap-0.5 items-center">
-              <el-rate
-                v-model="item.star"
-                disabled
-                show-score
-                text-color="#ff9900"
-                :score-template="`{value} ${$t('point')}`"
-              />
+        <div class="h-[90%]">
+          <div class="h-[275px] overflow-hidden">
+            <img class="w-full hover:scale-125 duration-500 transition-all h-full z-10"
+                 :src="`${FileApiBaseUrl}/uploads/${item.img}`"
+                 :alt="item.title">
+            <div class="relative bottom-[70px] left-0 z-30 flex flex-row justify-end">
+              <p class="bg-black bg-opacity-[70%] text-white p-3 m-4 py-2 mx-2 rounded-md">
+                {{ tripStore.formatPrice(item.price) }}
+              </p>
             </div>
-            <router-link
-              class="px-4 py-2 bg-[#FF4D64] rounded text-white"
-              :to="`trip/${encodeURIComponent(item.title)}`"
-            >
-              {{ $t('viewDetails') }}
-            </router-link>
+          </div>
+          <div class="mt-2">
+            <div class="flex flex-row justify-between px-2">
+              <div>
+                <p class="text-2xl font-semibold ">{{ $format(item.title) }}</p>
+                <p>{{ $format(item.region) }}</p>
+              </div>
+              <div class="pr-2 h-full">
+                <el-rate v-model="item.star" size="large" allow-half show-score disabled></el-rate>
+              </div>
+
+            </div>
+            <div class="px-4 py-2">
+              <el-text size="default" line-clamp="3">{{ $format(item.description) }}</el-text>
+            </div>
           </div>
         </div>
-      </swiper-slide>
-    </swiper>
+        <div class="h-[10%] flex flex-row justify-end items-center">
+          <button class="py-3 p-6 rounded bg-[#FF4D64] text-white mr-2 mb-2" @click="bookATrip(item)">
+            {{ $t('viewDetails') }}
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
+  <booking-modal v-model="bookDialogOpen" :trip="selectedTrip"/>
 </template>
 <style>
 .zoom {
   transform: scale(1.2);
 }
+
 .autoplay-progress {
   position: absolute;
   right: 16px;
@@ -93,6 +100,7 @@ function urlImage(url) {
   font-weight: bold;
   color: var(--swiper-theme-color);
 }
+
 .autoplay-progress svg {
   --progress: 0;
   position: absolute;

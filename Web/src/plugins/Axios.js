@@ -1,8 +1,10 @@
 import axios from "axios";
-import NotificationHelper from "@/tools/NotificationHelper.js";
+
+export const ApiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+export const FileApiBaseUrl = import.meta.env.VITE_API_BASE_URL.replace("/api", "");
 
 export const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL,
+    baseURL: ApiBaseUrl,
     headers: {
         "Content-Type": "application/json",
         'Access-Control-Allow-Origin': '*',

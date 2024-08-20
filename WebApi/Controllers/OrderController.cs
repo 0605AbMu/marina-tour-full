@@ -40,7 +40,9 @@ public class OrderController : AuthorizedControllerBase
                Trip = new
                {
                     x.Trip.Id,
-                    x.Trip.Name
+                    x.Trip.Name,
+                    x.Trip.Price,
+                    x.Trip.Discount
                },
                x.Fee,
                x.Quantity,
@@ -68,7 +70,9 @@ public class OrderController : AuthorizedControllerBase
                     Trip = new
                     {
                          x.Trip.Id,
-                         x.Trip.Name
+                         x.Trip.Name,
+                         x.Trip.Price,
+                         x.Trip.Discount
                     },
                     x.Fee,
                     x.Quantity,
