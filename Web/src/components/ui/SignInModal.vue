@@ -3,20 +3,35 @@
 import {reactive, ref} from "vue";
 import authService from "@/services/AuthService.ts";
 import {vMaska} from "maska/vue";
+import NotificationHelper from "@/tools/NotificationHelper.js";
 
 const signInModelInit = {
   phoneNumber: "",
   otp: "",
+  name: "",
   key: null
 };
 const signModel = reactive(signInModelInit);
 
 const otpSent = ref(false);
 
+const hasSignUp = ref(false);
+
 const onSignClick = async () => {
-  const res = await authService.SignIn(null, signModel.phoneNumber.replaceAll(" ", ""));
+  const res = await authService.SignIn(signModel.name, signModel.phoneNumber.replaceAll(" ", ""));
   signModel.key = res.content;
   otpSent.value = true;
+}
+
+const onSignUpClick = async () => {
+  if (!hasSignUp.value)
+    hasSignUp.value = true;
+
+  if (!signModel.name || signModel.name.length === 0) {
+    return NotificationHelper.Warning("Username kiritish majburiy");
+  }
+
+  await onSignClick();
 }
 
 const onVerifyClick = async () => {
@@ -42,12 +57,14 @@ const model = defineModel({
           <span>+998</span>
         </template>
       </el-input>
+      <el-input v-if="hasSignUp" v-model="signModel.name" size="large" placeholder="Username"
+                :disabled="otpSent"></el-input>
       <el-input v-if="otpSent" v-model="signModel.otp" size="large" placeholder="OTP"
                 v-maska="'# # # # # #'"></el-input>
       <div class="flex justify-center flex-row">
-        <el-button size="large" v-if="!otpSent">Sign up</el-button>
+        <el-button size="large" v-if="!otpSent" @click="onSignUpClick">Sign up</el-button>
         <el-button size="large" @click="onVerifyClick" v-if="otpSent" type="primary">Verify</el-button>
-        <el-button size="large" type="primary" @click="onSignClick" v-if="!otpSent">Sign in</el-button>
+        <el-button size="large" type="primary" @click="onSignClick" v-if="!otpSent && !hasSignUp">Sign in</el-button>
       </div>
     </div>
 
