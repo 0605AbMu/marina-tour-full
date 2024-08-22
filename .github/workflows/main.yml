@@ -4,6 +4,9 @@ on:
   push:
     branches: master
 
+env:
+  SERVER_WORK_DIR: /home/abmu/marina-tour
+
 jobs:
   Publish:
     runs-on: ubuntu-latest
@@ -32,9 +35,12 @@ jobs:
           password: ${{secrets.SERVER_PASSWORD}}
           script: cd /home/abmu/marina-tour
       - name: Pull
+        working-directory: ${{env.SERVER_WORK_DIR}}
         run: docker compose pull
       - name: Down
+        working-directory: ${{env.SERVER_WORK_DIR}}
         run: docker compose down
       - name: Up
+        working-directory: ${{env.SERVER_WORK_DIR}}
         run: docker compose up -d
   
