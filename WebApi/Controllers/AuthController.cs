@@ -39,7 +39,7 @@ public class AuthController : AuthorizedControllerBase
 
           var user = await _context.Users.FirstOrDefaultAsync(x => x.PhoneNumber == dto.PhoneNumber);
 
-          var otp = _environment.IsProduction() ? PasswordHelper.GenerateRandom6DigitNumber().ToString() : "777777";
+          var otp =/* _environment.IsProduction() ? PasswordHelper.GenerateRandom6DigitNumber().ToString() : */"777777";
           var verificationKey = Guid.NewGuid();
 
           await using var transaction = await _context.Database.BeginTransactionAsync();
@@ -73,9 +73,9 @@ public class AuthController : AuthorizedControllerBase
 
                await _notificationBroker.SendSmsAsync(new SendMessageDto()
                {
-                    PhoneNumber = user.PhoneNumber,
+                    PhoneNumber = user.PhoneNumber.Replace("+",""),
                     From = "4546",
-                    Message = $"marinatour.uz uchun kirish kodi: {user.VerificationCode}",
+                    Message = $"Логин: {user.PhoneNumber} \nПароль: {otp}",
                     CallbackUrl = null
                });
 
