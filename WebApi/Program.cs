@@ -58,7 +58,10 @@ builder.Services.AddSwaggerGen(options =>
      options.AddSecurityRequirement(new OpenApiSecurityRequirement()
      {
           {
-               securityScheme, ["Bearer"]
+               securityScheme, new List<string>()
+               {
+                    "Bearer"
+               }
           }
      });
 });
@@ -76,12 +79,10 @@ builder.Services.AddDbContextPool<AppDbContext>(optionsBuilder =>
                ConnectionString = connectionString
           }
      };
-     sourceBuilder.EnableDynamicJson();
 
      optionsBuilder
           .EnableDetailedErrors()
           .EnableSensitiveDataLogging()
-          .UseSnakeCaseNamingConvention()
           .UseNpgsql(sourceBuilder.Build());
 });
 
@@ -143,10 +144,13 @@ builder.Services.AddCors(options =>
      });
 });
 
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+app.UseHealthChecks("/healthy");
 
 app.UseDefaultFiles();
 var cacheMaxAgeOneWeek = (60 * 60 * 24 * 7).ToString();

@@ -6,6 +6,6 @@ public class VerifyDto
 {
      public Guid Key { get; set; }
 
-     [Length(maximumLength: 6, minimumLength: 6)]
+     [MinLength(6), MaxLength(6)]
      public string Code { get; set; } = default!;
 }
