@@ -3,30 +3,30 @@
   "en": "English",
   "ru": "Russian",
   "headerText": {
-    "1": "Our travel agents are",
-    "2": "with the best",
-    "3": "service we have."
+    "1": "Our travel agents are here for you",
+    "2": "to provide the best services",
+    "3": "we are always ready."
   },
   "menu": {
     "home": "Homepage",
     "trips": "Trips",
-    "gallery": "About us",
+    "gallery": "about Us",
     "blog": "Blog"
   },
-  "headerDesc": "The best places in the budget. ",
+  "headerDesc": "The best places at an affordable price, Marina travel will book your travel for you remotely. ",
   "getStarted": "Start",
   "playVideo": "Video",
   "trips": {
     "label": "Travel plans",
-    "description": "The best places in the budget.  "
+    "description": "The most difficult places at an affordable price!"
   },
   "gallery": {
-    "label": "About us",
+    "label": "about Us",
     "description": "All the travel companies that we are going to share with you are cool creative and unique."
   },
-  "subsribeOurNewsLetter": "Subscribe to our newsletter",
+  "subsribeOurNewsLetter": "Subscribe to our newsletter!",
   "typeAnEmail": "Enter email",
-  "subscribe": "Subscribe",
+  "subscribe": "Become a member",
   "services": "Services",
   "popularPlaces": "Popular places",
   "pricing": "Prices",
@@ -38,12 +38,24 @@
   "news": "News",
   "point": "score",
   "viewDetails": "Booking",
-  "amount": "Cost",
+  "amount": "Price",
   "quantity": "Number",
   "total": "Total",
   "payViaClick": "Pay with a click",
   "contacts": "Communication",
   "support": "Help",
   "ourLocation": "Our address",
-  "login": "Sign In/Up"
+  "login": "Login to the system",
+  "signIn": "Enter",
+  "signUp": "Sign up",
+  "verify": "Check",
+  "otp": "sms code",
+  "phoneNumber": "Phone number",
+  "userName": "Username",
+  "profile": "My page",
+  "myOrders": "My orders",
+  "users": "Users",
+  "tripManagement": "Trips",
+  "signOut": "Sign out",
+  "allRightsReserved": "all rights reserved"
 }
