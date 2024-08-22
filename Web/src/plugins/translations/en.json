@@ -10,7 +10,7 @@
   "menu": {
     "home": "Homepage",
     "trips": "Trips",
-    "gallery": "Gallery",
+    "gallery": "About us",
     "blog": "Blog"
   },
   "headerDesc": "The best places in the budget. ",
@@ -44,5 +44,6 @@
   "payViaClick": "Pay with a click",
   "contacts": "Communication",
   "support": "Help",
-  "ourLocation": "Our address"
+  "ourLocation": "Our address",
+  "login": "Sign In/Up"
 }

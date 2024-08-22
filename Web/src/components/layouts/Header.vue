@@ -67,7 +67,7 @@ onMounted(() => {
       <div class="flex flex-row gap-x-4 justify-center items-center">
         <SelectLang/>
         <button v-if="!authStore.userSignedIn" @click="() => signModalOpen = !signModalOpen"
-                class="py-1 px-6 rounded bg-[#FF4D64] text-white">{{ $t('login') }}
+                class="py-1 px-6 rounded bg-[#FF4D64] text-white">{{ $t('signIn') }}
         </button>
         <template v-else>
           <el-dropdown>

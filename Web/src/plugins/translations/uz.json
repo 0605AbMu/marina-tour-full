@@ -3,14 +3,14 @@
   "en": "Inglizcha",
   "ru": "Ruscha",
   "headerText": {
-    "1": "Our travel agents are",
-    "2": "with the best",
-    "3": "service we have."
+    "1": "Bizning sayohat agentalarimiz siz uchun",
+    "2": "eng yaxshi xizmatlar ko'rsatishga",
+    "3": "xamisha tayyormiz."
   },
   "menu": {
     "home": "Bosh sahifa",
     "trips": "Sayohatlar",
-    "gallery": "Gallereya",
+    "gallery": "Biz haqimizda",
     "blog": "Blog"
   },
   "headerDesc": "The best places in the budget. Premier Travel Going The Distance For You. The best vacation is the one you will never forget.",
@@ -44,5 +44,12 @@
   "payViaClick": "Click bilan to'lang",
   "contacts": "Aloqa",
   "support": "Yordam",
-  "ourLocation": "Manzilimiz"
+  "ourLocation": "Manzilimiz",
+  "login": "Tizimga kirish",
+  "signIn": "Kirish",
+  "signUp": "Ro'yxatdan o'tish",
+  "verify": "Tekshirish",
+  "otp": "sms kod",
+  "phoneNumber": "Telefon Raqam",
+  "userName": "Foydalanuvchi nomi"
 }
