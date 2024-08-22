@@ -80,6 +80,8 @@ builder.Services.AddDbContextPool<AppDbContext>(optionsBuilder =>
                ConnectionString = connectionString
           }
      };
+     
+     sourceBuilder.EnableDynamicJson();
 
      optionsBuilder
           .EnableDetailedErrors()
@@ -141,7 +143,7 @@ builder.Services.AddCors(options =>
      options.AddDefaultPolicy(policyBuilder =>
      {
           policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-          policyBuilder.WithOrigins("http://localhost:8081");
+          policyBuilder.WithOrigins("http://localhost:8080");
      });
 });
 
