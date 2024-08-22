@@ -39,7 +39,7 @@ const router = createRouter({
                             children: [
                                 {
                                     path: '',
-                                    name: 'MyInfo',
+                                    name: 'profile',
                                     component: () => import('../views/Dashboard/my-info.vue'),
                                     meta: {
                                         requiredRoles: requiredRolePolicies.Client
@@ -47,7 +47,7 @@ const router = createRouter({
                                 },
                                 {
                                     path: 'users',
-                                    name: 'UserManagement',
+                                    name: 'users',
                                     component: () => import('../views/Dashboard/user-management.vue'),
                                     meta: {
                                         requiredRoles: requiredRolePolicies.Admin
@@ -55,7 +55,7 @@ const router = createRouter({
                                 },
                                 {
                                     path: 'trip-management',
-                                    name: 'TripManagement',
+                                    name: 'tripManagement',
                                     component: () => import('../views/Dashboard/trip-management.vue'),
                                     meta: {
                                         requiredRoles: requiredRolePolicies.Admin
@@ -63,7 +63,7 @@ const router = createRouter({
                                 },
                                 {
                                     path: 'my-orders',
-                                    name: 'MyInfo',
+                                    name: 'myOrders',
                                     component: () => import('../views/Dashboard/my-orders.vue'),
                                     meta: {
                                         requiredRoles: requiredRolePolicies.Client

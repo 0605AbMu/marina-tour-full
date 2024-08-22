@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  My Info
+<!--  My Info-->
 </template>
 
 <style scoped>

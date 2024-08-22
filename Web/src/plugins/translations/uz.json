@@ -13,18 +13,18 @@
     "gallery": "Biz haqimizda",
     "blog": "Blog"
   },
-  "headerDesc": "The best places in the budget. Premier Travel Going The Distance For You. The best vacation is the one you will never forget.",
+  "headerDesc": "Eng zo'r joylar hamyonbop narxda, Marina travel siz uchun sayohatingizni masofadan band qiladi. Sizda hech qachon unutilmaydigan sayohatlardan biri bo'ladi.",
   "getStarted": "Boshlash",
   "playVideo": "Video",
   "trips": {
     "label": "Sayohat rejalari",
-    "description": "The best places in the budget. Premier Travel Going The Distance For You. "
+    "description": "Eng zor joylar hamyonbop narxda!"
   },
   "gallery": {
     "label": "Biz haqimizda",
     "description": "All the travel company that we are going to share with you are cool creative and unique."
   },
-  "subsribeOurNewsLetter": "Subscribe to our newsletter",
+  "subsribeOurNewsLetter": "Axborot xizmatizga obuna bo'ling!",
   "typeAnEmail": "Email kiriting",
   "subscribe": "A'zo bo'ling",
   "services": "Xizmatlar",
@@ -51,5 +51,11 @@
   "verify": "Tekshirish",
   "otp": "sms kod",
   "phoneNumber": "Telefon Raqam",
-  "userName": "Foydalanuvchi nomi"
+  "userName": "Foydalanuvchi nomi",
+  "profile": "Mening sahifam",
+  "myOrders": "Mening buyurtmalarim",
+  "users": "Foydalanuvchilar",
+  "tripManagement": "Sayohatlar",
+  "signOut": "Tizimdan chiqish",
+  "allRightsReserved": "Barcha huquqlar himoyalangan"
 }

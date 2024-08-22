@@ -83,26 +83,26 @@ onMounted(() => {
                 <authorize :role="[Roles.Client, Roles.Admin]">
                   <router-link to="/dashboard">
                     <el-dropdown-item>
-                      Profil
+                      {{ $t('profile')}}
                     </el-dropdown-item>
                   </router-link>
                 </authorize>
 
                 <authorize :role="[Roles.Client, Roles.Admin]">
                   <router-link to="/dashboard/my-orders">
-                    <el-dropdown-item>Mening buyurtmalarim</el-dropdown-item>
+                    <el-dropdown-item>{{ $t('myOrders') }}</el-dropdown-item>
                   </router-link>
                 </authorize>
 
                 <authorize :role="Roles.Admin">
                   <router-link to="/dashboard/users">
-                    <el-dropdown-item>Foydalanuvchilar</el-dropdown-item>
+                    <el-dropdown-item>{{ $t('users') }}</el-dropdown-item>
                   </router-link>
                 </authorize>
 
                 <authorize :role="Roles.Admin">
                   <router-link to="/dashboard/trip-management">
-                    <el-dropdown-item>Sayohatlar boshqaruvi</el-dropdown-item>
+                    <el-dropdown-item>{{ $t('tripManagement')}}</el-dropdown-item>
                   </router-link>
                 </authorize>
 
@@ -110,7 +110,7 @@ onMounted(() => {
                   <el-icon color="rgb(185 28 28)">
                     <RemoveFilled/>
                   </el-icon>
-                  <span class="text-red-700 font-bold">Sign Out</span>
+                  <span class="text-red-700 font-bold">{{ $t('signOut')}}</span>
                 </el-dropdown-item>
               </el-dropdown-menu>
             </template>

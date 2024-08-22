@@ -55,7 +55,7 @@
 
     <div class="divider"></div>
     <p class="text-gray-400">
-      Copyright © {{ new Date().getFullYear() }} Marina Travel, All rights reserved.
+      Copyright © {{ new Date().getFullYear() }} Marina Travel, {{ $t('allRightsReserved')}}.
     </p>
   </div>
 </template>

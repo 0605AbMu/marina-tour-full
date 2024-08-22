@@ -27,7 +27,7 @@ const route = useRoute();
         </el-menu>
       </div>
       <div class="w-[80%] flex flex-col">
-        <p class="text-2xl font-medium">{{ route.name }}</p>
+        <p class="text-2xl font-medium">{{ $t(route.name) }}</p>
         <div class="flex justify-center">
           <router-view></router-view>
         </div>
