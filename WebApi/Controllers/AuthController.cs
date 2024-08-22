@@ -71,13 +71,13 @@ public class AuthController : AuthorizedControllerBase
 
                await _context.SaveChangesAsync();
 
-               await _notificationBroker.SendSmsAsync(new SendMessageDto()
-               {
-                    PhoneNumber = user.PhoneNumber.Replace("+",""),
-                    From = "4546",
-                    Message = $"Логин: {user.PhoneNumber} \nПароль: {otp}",
-                    CallbackUrl = null
-               });
+               // await _notificationBroker.SendSmsAsync(new SendMessageDto()
+               // {
+               //      PhoneNumber = user.PhoneNumber.Replace("+",""),
+               //      From = "4546",
+               //      Message = $"Логин: {user.PhoneNumber} \nПароль: {otp}",
+               //      CallbackUrl = null
+               // });
 
                await transaction.CommitAsync();
           }
