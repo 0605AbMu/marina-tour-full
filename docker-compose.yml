@@ -1,7 +1,7 @@
 ﻿services:
   webapi:
     container_name: marina-tour-web
-    image: 0605AbMu/marina-tour-web
+    image: 0605abmu/marina-tour-web
     build:
       context: .
       dockerfile: WebApi/Dockerfile
@@ -13,4 +13,7 @@
       interval: 10s
     ports:
       - "8081:8080"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
       
