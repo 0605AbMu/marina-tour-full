@@ -42,39 +42,50 @@ public class AuthController : AuthorizedControllerBase
           var otp = _environment.IsProduction() ? PasswordHelper.GenerateRandom6DigitNumber().ToString() : "777777";
           var verificationKey = Guid.NewGuid();
 
-          if (user is null)
+          await using var transaction = await _context.Database.BeginTransactionAsync();
+          try
           {
-               if (dto.Name.IsNullOrEmpty())
-                    throw new BadRequestException("Name field is required");
-
-               user = new User()
+               if (user is null)
                {
-                    PhoneNumber = phoneNumber,
-                    Name = dto.Name!,
-                    VerificationCode = otp,
-                    VerificationKey = verificationKey,
-                    Role = Roles.Client
-               };
+                    if (dto.Name.IsNullOrEmpty())
+                         throw new BadRequestException("Name field is required");
 
-               user = _context.Users.Add(user).Entity;
+                    user = new User()
+                    {
+                         PhoneNumber = phoneNumber,
+                         Name = dto.Name!,
+                         VerificationCode = otp,
+                         VerificationKey = verificationKey,
+                         Role = Roles.Client
+                    };
+
+                    user = _context.Users.Add(user).Entity;
+               }
+               else
+               {
+                    user.VerificationCode = otp;
+                    user.VerificationKey = verificationKey;
+
+                    _context.Users.Update(user);
+               }
+
+               await _context.SaveChangesAsync();
+
+               await _notificationBroker.SendSmsAsync(new SendMessageDto()
+               {
+                    PhoneNumber = user.PhoneNumber,
+                    From = "4546",
+                    Message = $"marinatour.uz uchun kirish kodi: {user.VerificationCode}",
+                    CallbackUrl = null
+               });
+
+               await transaction.CommitAsync();
           }
-          else
+          catch (Exception e)
           {
-               user.VerificationCode = otp;
-               user.VerificationKey = verificationKey;
-
-               _context.Users.Update(user);
+               await transaction.RollbackAsync();
+               throw;
           }
-
-          await _context.SaveChangesAsync();
-
-          await _notificationBroker.SendSmsAsync(new SendMessageDto()
-          {
-               PhoneNumber = user.PhoneNumber,
-               From = "4546",
-               Message = $"marinatour.uz uchun kirish kodi: {user.VerificationCode}",
-               CallbackUrl = null
-          });
 
           return (verificationKey.ToString(), 200);
      }
