@@ -7,7 +7,7 @@ import NotificationHelper from "@/tools/NotificationHelper.js";
 
 const signInModelInit = {
   phoneNumber: "",
-  otp: "",
+  otp: "777777",
   name: "",
   key: null
 };
@@ -60,7 +60,7 @@ const model = defineModel({
       <el-input v-if="hasSignUp" v-model="signModel.name" size="large" :placeholder="$t('userName')"
                 :disabled="otpSent"></el-input>
       <el-input v-if="otpSent" v-model="signModel.otp" size="large" :placeholder="$t('otp')"
-                v-maska="'# # # # # #'"></el-input>
+                v-maska="'# # # # # #'" :disabled="true"></el-input>
       <div class="flex justify-center flex-row">
         <el-button size="large" v-if="!otpSent" @click="onSignUpClick">{{ $t('signUp') }}</el-button>
         <el-button size="large" @click="onVerifyClick" v-if="otpSent" type="primary">Verify</el-button>
