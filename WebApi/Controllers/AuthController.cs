@@ -9,6 +9,7 @@ using ResultWrapper.Library;
 using WebApi.Brokers;
 using WebApi.Common;
 using WebApi.Contracts;
+using WebApi.Contracts.Notification;
 using WebApi.Exceptions;
 using WebApi.Extensions;
 using WebApi.Helpers;
@@ -22,11 +23,13 @@ public class AuthController : AuthorizedControllerBase
 {
      private readonly AppDbContext _context;
      private readonly IWebHostEnvironment _environment;
+     private readonly NotificationBroker _notificationBroker;
 
-     public AuthController(AppDbContext context, IWebHostEnvironment environment)
+     public AuthController(AppDbContext context, IWebHostEnvironment environment, NotificationBroker notificationBroker)
      {
           _context = context;
           _environment = environment;
+          _notificationBroker = notificationBroker;
      }
 
      [HttpPost("sign"), AllowAnonymous]
@@ -65,7 +68,13 @@ public class AuthController : AuthorizedControllerBase
 
           await _context.SaveChangesAsync();
 
-          //ToDo: will notify with sms
+          await _notificationBroker.SendSmsAsync(new SendMessageDto()
+          {
+               PhoneNumber = user.PhoneNumber,
+               From = "4546",
+               Message = $"marinatour.uz uchun kirish kodi: {user.VerificationCode}",
+               CallbackUrl = null
+          });
 
           return (verificationKey.ToString(), 200);
      }

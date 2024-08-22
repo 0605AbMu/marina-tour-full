@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Npgsql;
@@ -145,6 +146,14 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddHealthChecks();
+builder.Services.AddMemoryCache();
+
+builder.Services.AddSingleton<NotificationBroker>();
+builder.Services.AddHttpClient("NotificationBrokerHttpClient",
+     client =>
+     {
+          client.BaseAddress = new Uri(builder.Configuration.GetSection("Eskiz").GetValue<string>("BaseUrl")!);
+     });
 
 var app = builder.Build();
 
