@@ -1,0 +1,31 @@
+name: Backend Production Deploy
+
+on: 
+  push:
+    branches: master
+
+jobs:
+  BuildAndPush:
+    runs-on: ubuntu
+    steps:
+      - name: Checking out
+        uses: actions/checkout@v4.1.7
+      - name: Docker login
+        uses: docker/login-action@v3.3.0
+        with:
+          username: ${{secrets.REGISTRY_USERNAME}}
+          password: ${{secrets.REGISTRY_PASSWORD}}
+      - name: Build
+        run: docker compose -f docker-compose.yml build
+      - name: Push
+        run: docker compose push
+        
+  # deploy-all:
+  #   runs-on: srv_runner_6
+  #   needs: [auth-api-publish, file-api-publish, admin-api-publish, reference-api-publish, student-api-publish, gateway-api-publish]
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: publish
+  #       working-directory: .
+  #       run: docker compose down && docker compose up -d        
+  
