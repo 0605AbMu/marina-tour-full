@@ -27,11 +27,11 @@
             <Link>.dockerignore</Link>
         </Content>
         <Content Update="wwwroot/**">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
 
-    <Target Name="FrontEndBuild" AfterTargets="Restore" BeforeTargets="BeforeBuild">
+    <Target Name="FrontEndBuild" AfterTargets="BeforeBuild">
         <Exec Command="cd ../Web/ &amp;&amp; npm run build:production"/>
     </Target>
 
